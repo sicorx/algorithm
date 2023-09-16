@@ -2,7 +2,7 @@
 # node : 노드 개수
 # edge : 엣지 개수
 # k : 출발 기준 노드
-# arr[s, e, w] : s:시작 노드, e:도착 노드, w:가중치
+# arr[s, e, w] : start->시작 노드, end->도착 노드, weight->가중치
 import sys
 from queue import PriorityQueue
 
@@ -13,8 +13,8 @@ def dijkstra(node, edge, k, arr) :
     q = PriorityQueue()
 
     for i in range(edge) :
-        u, v, w = map(int, arr[i])
-        myList[u].append((v, w))
+        s, e, w = map(int, arr[i])
+        myList[s].append((e, w))
     
     q.put((0, k))
     distance[k] = 0
@@ -32,14 +32,14 @@ def dijkstra(node, edge, k, arr) :
                 distance[next] = distance[c_v] + value
                 q.put((distance[next], next))
 
-    ################## test #################
+###################### test #################
     for i in range(1, node + 1) :
         if visited[i] :
             print(distance[i])
         else :
             print("INF")
-    ################## test #################
 
 tmp = [[5, 1, 1],[1, 2, 2],[1, 3, 3],[2, 3, 4],[2, 4, 5],[3, 4, 6]]
 dijkstra(5, 6, 1, tmp)
+###################### test #################
 
